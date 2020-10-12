@@ -27,7 +27,7 @@ class CalculadoraDeParcelamentoTest {
         assertAll(
                 () -> assertEquals(EM_48_X, parcelas.size()),
                 () -> assertEquals(new BigDecimal("27.23"), primeiraParcela.getValor()),
-                () -> assertEquals(TAXA_PERCENTUAL_PADRAO_JUROS, primeiraParcela.getTaxaJurosMes())
+                () -> assertEquals(TAXA_PERCENTUAL_PADRAO_JUROS, primeiraParcela.getTaxaJurosAoMes())
         );
     }
 
@@ -41,7 +41,7 @@ class CalculadoraDeParcelamentoTest {
         assertAll(
                 () -> assertEquals(EM_6_X, parcelas.size()),
                 () -> assertEquals(new BigDecimal("166.67"), primeiraParcela.getValor()),
-                () -> assertEquals(TAXA_PERCENTUAL_SEM_JUROS, primeiraParcela.getTaxaJurosMes())
+                () -> assertEquals(TAXA_PERCENTUAL_SEM_JUROS, primeiraParcela.getTaxaJurosAoMes())
         );
     }
 }

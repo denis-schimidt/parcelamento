@@ -2,6 +2,7 @@ package com.viavarejo.vendas.parcelamento.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import javax.validation.constraints.DecimalMin;
@@ -22,15 +23,17 @@ public class CondicaoPagamento {
     private final Integer quantidadeDeParcelas;
 
     @JsonCreator
-    CondicaoPagamento(BigDecimal valorDeEntrada, Integer quantidadeDeParcelas) {
+    CondicaoPagamento(@JsonProperty("valorEntrada") BigDecimal valorDeEntrada, @JsonProperty("qtdeParcelas") Integer quantidadeDeParcelas) {
         this.valorDeEntrada = valorDeEntrada;
         this.quantidadeDeParcelas = quantidadeDeParcelas;
     }
 
+    @JsonProperty("valorEntrada")
     public BigDecimal getValorDeEntrada() {
         return valorDeEntrada;
     }
 
+    @JsonProperty("qtdeParcelas")
     public Integer getQuantidadeDeParcelas() {
         return quantidadeDeParcelas;
     }
