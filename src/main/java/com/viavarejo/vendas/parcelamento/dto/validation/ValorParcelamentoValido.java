@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface ValorParcelamentoValido {
 
-    String message() default "{com.viavarejo.vendas.calculadoraDeParcelamento.dto.validation.ValorFinanciadoValido.message}";
+    String message() default "{com.viavarejo.vendas.parcelamento.dto.validation.ValorParcelamentoValido.message}";
 
     Class<?>[] groups() default {};
 
