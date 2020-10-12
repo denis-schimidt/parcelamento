@@ -2,8 +2,8 @@ selic:
     taxa-percentual-padrao: 1.15
     endpoint:
         uri: https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados/ultimos/%d?formato=json
-        connection-timeout: 2000
-        read-timeout: 2000
+        connection-timeout: 1000
+        read-timeout: 1000
         dias-atras-pesquisa: 30
     servico-pesquisa:
         habilitado: true
