@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.viavarejo.vendas.parcelamento.dto.validation.ValorParcelamentoValido;
 import com.viavarejo.vendas.parcelamento.model.CalculadoraDeParcelamento;
+import io.swagger.v3.oas.annotations.Hidden;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import javax.validation.Valid;
@@ -30,10 +31,12 @@ public class BaseCalculoDeParcelas {
         this.condicaoPagamento = condicaoPagamento;
     }
 
+    @Hidden
     public int getQuantidadeParcelas() {
         return condicaoPagamento.getQuantidadeDeParcelas();
     }
 
+    @Hidden
     public BigDecimal getValorASerParcelado() {
         return produto.getValor().subtract(condicaoPagamento.getValorDeEntrada());
     }

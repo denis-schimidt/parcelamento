@@ -23,7 +23,7 @@ class CalculadoraParcelasController {
         this.selecionadorServicoDeParcelamento = selecionadorServicoDeParcelamento;
     }
 
-    @GetMapping(value = "/parcelamento", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/parcelamento", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
     List<Parcela> calcularParcelasPor(@Valid @RequestBody BaseCalculoDeParcelas baseCalculoDeParcelas) {
 

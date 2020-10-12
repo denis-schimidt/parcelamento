@@ -1,9 +1,11 @@
 package com.viavarejo.vendas.parcelamento.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 class EndpointExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     ResponseEntity handleValidationExceptions(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
 
