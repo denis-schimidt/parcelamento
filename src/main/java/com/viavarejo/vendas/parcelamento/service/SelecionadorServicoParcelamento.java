@@ -1,6 +1,6 @@
 package com.viavarejo.vendas.parcelamento.service;
 
-import com.viavarejo.vendas.parcelamento.dto.BaseCalculoDeParcelas;
+import com.viavarejo.vendas.parcelamento.dto.DadosEntradaParcelamento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +18,8 @@ public class SelecionadorServicoParcelamento {
         }
     }
 
-    public ServicoParcelamento selecionarServicoBaseadoEm(BaseCalculoDeParcelas baseCalculoDeParcelas) {
-        TipoParcelamento tipoParcelamento = TipoParcelamento.getInstance(baseCalculoDeParcelas);
+    public ServicoParcelamento selecionarServicoBaseadoEm(DadosEntradaParcelamento dadosEntradaParcelamento) {
+        TipoParcelamento tipoParcelamento = TipoParcelamento.getInstance(dadosEntradaParcelamento);
 
         return simuladorParcelasPorTipoParcelamento.get(tipoParcelamento);
     }

@@ -1,7 +1,7 @@
 package com.viavarejo.vendas.parcelamento.service;
 
 import com.viavarejo.vendas.parcelamento.model.Parcela;
-import com.viavarejo.vendas.parcelamento.model.CalculadoraDeParcelamento;
+import com.viavarejo.vendas.parcelamento.model.CalculoParcelamento;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +12,8 @@ import static com.viavarejo.vendas.parcelamento.service.TipoParcelamento.SEM_JUR
 class ServicoParcelamentoSemJuros implements ServicoParcelamento {
 
     @Override
-    public List<Parcela> calcularParcelamento(final CalculadoraDeParcelamento calculadoraDeParcelamento) {
-        return calculadoraDeParcelamento.calcularParcelamentoSemJuros();
+    public List<Parcela> calcularParcelamento(final CalculoParcelamento calculoParcelamento) {
+        return calculoParcelamento.calcularParcelamentoSemJuros();
     }
 
     @Override

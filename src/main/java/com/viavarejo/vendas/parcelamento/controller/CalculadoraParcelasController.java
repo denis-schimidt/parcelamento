@@ -1,6 +1,6 @@
 package com.viavarejo.vendas.parcelamento.controller;
 
-import com.viavarejo.vendas.parcelamento.dto.BaseCalculoDeParcelas;
+import com.viavarejo.vendas.parcelamento.dto.DadosEntradaParcelamento;
 import com.viavarejo.vendas.parcelamento.model.Parcela;
 import com.viavarejo.vendas.parcelamento.service.SelecionadorServicoParcelamento;
 import com.viavarejo.vendas.parcelamento.service.ServicoParcelamento;
@@ -25,10 +25,10 @@ class CalculadoraParcelasController {
 
     @PostMapping(value = "/parcelamento", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
-    List<Parcela> calcularParcelasPor(@Valid @RequestBody BaseCalculoDeParcelas baseCalculoDeParcelas) {
+    List<Parcela> calcularParcelasPor(@Valid @RequestBody DadosEntradaParcelamento dadosEntradaParcelamento) {
 
-        ServicoParcelamento servicoParcelamento = selecionadorServicoDeParcelamento.selecionarServicoBaseadoEm(baseCalculoDeParcelas);
+        ServicoParcelamento servicoParcelamento = selecionadorServicoDeParcelamento.selecionarServicoBaseadoEm(dadosEntradaParcelamento);
 
-        return servicoParcelamento.calcularParcelamento(baseCalculoDeParcelas.converterParaModelo());
+        return servicoParcelamento.calcularParcelamento(dadosEntradaParcelamento.converterParaModelo());
     }
 }

@@ -1,6 +1,6 @@
 package com.viavarejo.vendas.parcelamento.service;
 
-import com.viavarejo.vendas.parcelamento.model.CalculadoraDeParcelamento;
+import com.viavarejo.vendas.parcelamento.model.CalculoParcelamento;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,13 +17,13 @@ class ServicoParcelamentoSemJurosTest {
     private ServicoParcelamentoSemJuros servicoParcelamentoSemJuros;
 
     @Mock
-    private CalculadoraDeParcelamento calculadoraDeParcelamento;
+    private CalculoParcelamento calculoParcelamento;
 
     @Test
     public void deveChamarCalculadoraDeParcelamentoCorretamente() {
-        servicoParcelamentoSemJuros.calcularParcelamento(calculadoraDeParcelamento);
+        servicoParcelamentoSemJuros.calcularParcelamento(calculoParcelamento);
 
-        verify(calculadoraDeParcelamento).calcularParcelamentoSemJuros();
+        verify(calculoParcelamento).calcularParcelamentoSemJuros();
     }
 
     @Test

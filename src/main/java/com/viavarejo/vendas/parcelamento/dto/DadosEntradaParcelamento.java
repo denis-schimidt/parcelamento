@@ -3,7 +3,7 @@ package com.viavarejo.vendas.parcelamento.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.viavarejo.vendas.parcelamento.dto.validation.ValorParcelamentoValido;
-import com.viavarejo.vendas.parcelamento.model.CalculadoraDeParcelamento;
+import com.viavarejo.vendas.parcelamento.model.CalculoParcelamento;
 import io.swagger.v3.oas.annotations.Hidden;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
@@ -15,7 +15,7 @@ import static org.apache.commons.lang3.builder.ToStringStyle.JSON_STYLE;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ValorParcelamentoValido
-public class BaseCalculoDeParcelas {
+public class DadosEntradaParcelamento {
 
     @Valid
     @NotNull
@@ -26,7 +26,7 @@ public class BaseCalculoDeParcelas {
     private final CondicaoPagamento condicaoPagamento;
 
     @JsonCreator
-    BaseCalculoDeParcelas(Produto produto, CondicaoPagamento condicaoPagamento) {
+    DadosEntradaParcelamento(Produto produto, CondicaoPagamento condicaoPagamento) {
         this.produto = produto;
         this.condicaoPagamento = condicaoPagamento;
     }
@@ -41,8 +41,8 @@ public class BaseCalculoDeParcelas {
         return produto.getValor().subtract(condicaoPagamento.getValorDeEntrada());
     }
 
-   public CalculadoraDeParcelamento converterParaModelo() {
-        return new CalculadoraDeParcelamento(getValorASerParcelado(), condicaoPagamento.getQuantidadeDeParcelas());
+   public CalculoParcelamento converterParaModelo() {
+        return new CalculoParcelamento(getValorASerParcelado(), condicaoPagamento.getQuantidadeDeParcelas());
    }
 
     public Produto getProduto() {

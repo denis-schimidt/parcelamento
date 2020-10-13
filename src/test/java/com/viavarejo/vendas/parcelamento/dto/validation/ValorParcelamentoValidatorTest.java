@@ -1,6 +1,6 @@
 package com.viavarejo.vendas.parcelamento.dto.validation;
 
-import com.viavarejo.vendas.parcelamento.dto.BaseCalculoDeParcelas;
+import com.viavarejo.vendas.parcelamento.dto.DadosEntradaParcelamento;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,15 +20,15 @@ class ValorParcelamentoValidatorTest {
     private ValorParcelamentoValidator valorParcelamentoValidator;
 
     @Mock
-    private BaseCalculoDeParcelas baseCalculoDeParcelas;
+    private DadosEntradaParcelamento dadosEntradaParcelamento;
     @Mock
     private ConstraintValidatorContext constraintValidatorContext;
 
     @Test // Valor da entrada maior que valor do produto
     public void deveRetornarFalseQuandoOValorParceladoForNegativo() {
-        when(baseCalculoDeParcelas.getValorASerParcelado()).thenReturn(BigDecimal.ONE.negate());
+        when(dadosEntradaParcelamento.getValorASerParcelado()).thenReturn(BigDecimal.ONE.negate());
 
-        assertFalse(valorParcelamentoValidator.isValid(baseCalculoDeParcelas, constraintValidatorContext));
+        assertFalse(valorParcelamentoValidator.isValid(dadosEntradaParcelamento, constraintValidatorContext));
     }
 
 //    @Test // Valor da entrada maior que valor do produto

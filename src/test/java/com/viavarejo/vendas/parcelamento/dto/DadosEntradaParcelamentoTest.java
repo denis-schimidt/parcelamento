@@ -1,6 +1,6 @@
 package com.viavarejo.vendas.parcelamento.dto;
 
-import com.viavarejo.vendas.parcelamento.model.CalculadoraDeParcelamento;
+import com.viavarejo.vendas.parcelamento.model.CalculoParcelamento;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class BaseCalculoDeParcelasTest {
+class DadosEntradaParcelamentoTest {
 
     @Mock
     private Produto produto;
     @Mock
     private CondicaoPagamento condicaoPagamento;
 
-    private BaseCalculoDeParcelas baseCalculoDeParcelas;
+    private DadosEntradaParcelamento dadosEntradaParcelamento;
 
     @BeforeEach
     public void setUp() {
@@ -29,14 +29,14 @@ class BaseCalculoDeParcelasTest {
         when(condicaoPagamento.getValorDeEntrada()).thenReturn(BigDecimal.ONE);
         when(condicaoPagamento.getQuantidadeDeParcelas()).thenReturn(10);
 
-        baseCalculoDeParcelas = new BaseCalculoDeParcelas(produto, condicaoPagamento);
+        dadosEntradaParcelamento = new DadosEntradaParcelamento(produto, condicaoPagamento);
     }
 
     @Test
     public void deveConverterDadosParaOModeloCorretamente() {
-        CalculadoraDeParcelamento calculadoraDeParcelamento = baseCalculoDeParcelas.converterParaModelo();
+        CalculoParcelamento calculoParcelamento = dadosEntradaParcelamento.converterParaModelo();
 
-        assertAll(() -> assertEquals(new BigDecimal("9"), calculadoraDeParcelamento.getValorASerParcelado()),
-                  () -> assertEquals(10, calculadoraDeParcelamento.getQuantidadeParcelas()));
+        assertAll(() -> assertEquals(new BigDecimal("9"), calculoParcelamento.getValorASerParcelado()),
+                  () -> assertEquals(10, calculoParcelamento.getQuantidadeParcelas()));
     }
 }

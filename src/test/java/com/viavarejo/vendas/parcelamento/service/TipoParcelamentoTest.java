@@ -1,6 +1,6 @@
 package com.viavarejo.vendas.parcelamento.service;
 
-import com.viavarejo.vendas.parcelamento.dto.BaseCalculoDeParcelas;
+import com.viavarejo.vendas.parcelamento.dto.DadosEntradaParcelamento;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -13,22 +13,22 @@ import static org.mockito.Mockito.when;
 class TipoParcelamentoTest {
 
     @Mock
-    private BaseCalculoDeParcelas baseCalculoDeParcelas;
+    private DadosEntradaParcelamento dadosEntradaParcelamento;
 
     @Test
     public void deveSelecionarParcelamentoSemJurosParaComprasEmAte6Vezes() {
-        when(baseCalculoDeParcelas.getQuantidadeParcelas()).thenReturn(6);
+        when(dadosEntradaParcelamento.getQuantidadeParcelas()).thenReturn(6);
 
-        TipoParcelamento tipoParcelamento = TipoParcelamento.getInstance(baseCalculoDeParcelas);
+        TipoParcelamento tipoParcelamento = TipoParcelamento.getInstance(dadosEntradaParcelamento);
 
         assertEquals(TipoParcelamento.SEM_JUROS, tipoParcelamento);
     }
 
     @Test
     public void deveSelecionarParcelamentoComJurosParaComprasSuperioresA6Vezes() {
-        when(baseCalculoDeParcelas.getQuantidadeParcelas()).thenReturn(7);
+        when(dadosEntradaParcelamento.getQuantidadeParcelas()).thenReturn(7);
 
-        TipoParcelamento tipoParcelamento = TipoParcelamento.getInstance(baseCalculoDeParcelas);
+        TipoParcelamento tipoParcelamento = TipoParcelamento.getInstance(dadosEntradaParcelamento);
 
         assertEquals(TipoParcelamento.COM_JUROS, tipoParcelamento);
     }

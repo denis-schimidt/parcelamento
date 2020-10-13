@@ -1,6 +1,6 @@
 package com.viavarejo.vendas.parcelamento.service;
 
-import com.viavarejo.vendas.parcelamento.model.CalculadoraDeParcelamento;
+import com.viavarejo.vendas.parcelamento.model.CalculoParcelamento;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -27,7 +27,7 @@ class ServicoParcelamentoComJurosTest {
     private ServicoParcelamentoComJuros servicoParcelamentoComJuros;
 
     @Mock
-    private CalculadoraDeParcelamento calculadoraDeParcelamento;
+    private CalculoParcelamento calculoParcelamento;
     @Captor
     private ArgumentCaptor<BigDecimal> taxaSelicCaptor;
 
@@ -35,9 +35,9 @@ class ServicoParcelamentoComJurosTest {
     public void deveChamarCalculadoraDeParcelamentoComTaxaSelicPadraoQuandoOServicoPesquisaEstiverDesabilitado() {
         servicoParcelamentoComJuros = new ServicoParcelamentoComJuros(TAXA_SELIC_PADRAO, servicoDePesquisaTaxaSelic, false);
 
-        servicoParcelamentoComJuros.calcularParcelamento(calculadoraDeParcelamento);
+        servicoParcelamentoComJuros.calcularParcelamento(calculoParcelamento);
 
-        verify(calculadoraDeParcelamento).calcularParcelamentoComTaxaDeJurosDe(TAXA_SELIC_PADRAO);
+        verify(calculoParcelamento).calcularParcelamentoComTaxaDeJurosDe(TAXA_SELIC_PADRAO);
     }
 
     @Test
@@ -45,9 +45,9 @@ class ServicoParcelamentoComJurosTest {
         servicoParcelamentoComJuros = new ServicoParcelamentoComJuros(TAXA_SELIC_PADRAO, servicoDePesquisaTaxaSelic, true);
         when(servicoDePesquisaTaxaSelic.pesquisarTaxaPercentualNoBancoCentral()).thenReturn(empty());
 
-        servicoParcelamentoComJuros.calcularParcelamento(calculadoraDeParcelamento);
+        servicoParcelamentoComJuros.calcularParcelamento(calculoParcelamento);
 
-        verify(calculadoraDeParcelamento).calcularParcelamentoComTaxaDeJurosDe(TAXA_SELIC_PADRAO);
+        verify(calculoParcelamento).calcularParcelamentoComTaxaDeJurosDe(TAXA_SELIC_PADRAO);
     }
 
     @Test
@@ -55,9 +55,9 @@ class ServicoParcelamentoComJurosTest {
         servicoParcelamentoComJuros = new ServicoParcelamentoComJuros(TAXA_SELIC_PADRAO, servicoDePesquisaTaxaSelic, true);
         when(servicoDePesquisaTaxaSelic.pesquisarTaxaPercentualNoBancoCentral()).thenReturn(of(TAXA_SELIC_BANCO_CENTRAL));
 
-        servicoParcelamentoComJuros.calcularParcelamento(calculadoraDeParcelamento);
+        servicoParcelamentoComJuros.calcularParcelamento(calculoParcelamento);
 
-        verify(calculadoraDeParcelamento).calcularParcelamentoComTaxaDeJurosDe(taxaSelicCaptor.capture());
+        verify(calculoParcelamento).calcularParcelamentoComTaxaDeJurosDe(taxaSelicCaptor.capture());
         assertEquals(TAXA_SELIC_BANCO_CENTRAL, taxaSelicCaptor.getValue());
     }
 

@@ -11,13 +11,13 @@ import static java.math.BigDecimal.ONE;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.builder.ToStringStyle.JSON_STYLE;
 
-public class CalculadoraDeParcelamento {
+public class CalculoParcelamento {
     private static final BigDecimal CEM = new BigDecimal("100");
 
     private final BigDecimal valorASerParcelado;
     private final int quantidadeParcelas;
 
-    public CalculadoraDeParcelamento(BigDecimal valorASerParcelado, int quantidadeParcelas) {
+    public CalculoParcelamento(BigDecimal valorASerParcelado, int quantidadeParcelas) {
         this.valorASerParcelado = valorASerParcelado;
         this.quantidadeParcelas = quantidadeParcelas;
     }

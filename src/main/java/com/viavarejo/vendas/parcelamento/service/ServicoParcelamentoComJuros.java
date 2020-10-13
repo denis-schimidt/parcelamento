@@ -1,7 +1,7 @@
 package com.viavarejo.vendas.parcelamento.service;
 
 import com.viavarejo.vendas.parcelamento.model.Parcela;
-import com.viavarejo.vendas.parcelamento.model.CalculadoraDeParcelamento;
+import com.viavarejo.vendas.parcelamento.model.CalculoParcelamento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -27,13 +27,8 @@ class ServicoParcelamentoComJuros implements ServicoParcelamento {
     }
 
     @Override
-    public List<Parcela> calcularParcelamento(final CalculadoraDeParcelamento calculadoraDeParcelamento) {
-        return calculadoraDeParcelamento.calcularParcelamentoComTaxaDeJurosDe(obterTaxaJurosSelic());
-    }
-
-    @Override
-    public TipoParcelamento getTipoParcelamento() {
-        return COM_JUROS;
+    public List<Parcela> calcularParcelamento(final CalculoParcelamento calculoParcelamento) {
+        return calculoParcelamento.calcularParcelamentoComTaxaDeJurosDe(obterTaxaJurosSelic());
     }
 
     private BigDecimal obterTaxaJurosSelic() {
@@ -43,5 +38,10 @@ class ServicoParcelamentoComJuros implements ServicoParcelamento {
         }
 
         return valorPercentualSelicPadrao;
+    }
+
+    @Override
+    public TipoParcelamento getTipoParcelamento() {
+        return COM_JUROS;
     }
 }
