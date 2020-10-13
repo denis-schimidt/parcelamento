@@ -1,5 +1,6 @@
 package com.viavarejo.vendas.parcelamento.controller;
 
+import com.viavarejo.vendas.parcelamento.dto.ErrosValidacao;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,7 +20,7 @@ class EndpointExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ApiResponse(responseCode = "400", description = "Para valores inválidos fornecidos pelo usuário", content =
-        @Content(mediaType = "text/plain", schema = @Schema(type="string")))
+        @Content(mediaType = "application/json", schema = @Schema(implementation=ErrosValidacao.class)))
     ResponseEntity handleValidationExceptions(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
 
@@ -35,6 +36,6 @@ class EndpointExceptionHandler {
                     .collect(toList()));
         }
 
-        return new ResponseEntity(erros, BAD_REQUEST);
+        return new ResponseEntity(new ErrosValidacao(erros), BAD_REQUEST);
     }
 }
