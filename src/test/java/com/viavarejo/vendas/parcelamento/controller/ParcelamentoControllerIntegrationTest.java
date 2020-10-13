@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "selic.servico-pesquisa.habilitado=false")
 @AutoConfigureMockMvc
-public class CalculadoraParcelasControllerIntegrationTest {
+public class ParcelamentoControllerIntegrationTest {
     private static final String JSON_PATH_PARCELA = "$.[%d].numeroParcela";
     private static final String JSON_PATH_VALOR = "$.[%d].valor";
     private static final String JSON_PATH_TAXA_JUROS_MES = "$.[%d].taxaJurosAoMes";
