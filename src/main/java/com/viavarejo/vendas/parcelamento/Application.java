@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CalculadoraParcelasApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CalculadoraParcelasApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
