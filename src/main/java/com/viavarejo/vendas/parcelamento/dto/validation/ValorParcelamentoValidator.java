@@ -10,11 +10,9 @@ import static java.math.BigDecimal.ZERO;
 public class ValorParcelamentoValidator implements ConstraintValidator<ValorParcelamentoValido, DadosEntradaParcelamento> {
 
     @Override
-    public boolean isValid(DadosEntradaParcelamento baseCalculo, ConstraintValidatorContext constraintContext) {
+    public boolean isValid(DadosEntradaParcelamento dadosEntrada, ConstraintValidatorContext constraintContext) {
 
-        int valorParceladoComparadoAZero = baseCalculo.getValorASerParcelado().compareTo(ZERO);
-
-        if(valorParceladoComparadoAZero < 0 || valorParceladoComparadoAZero == 0) {
+        if (dadosEntrada.getValorASerParcelado().compareTo(ZERO) <= 0) {
             return false;
         }
 
