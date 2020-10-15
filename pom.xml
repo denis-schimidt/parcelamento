@@ -9,10 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.viavarejo.vendas</groupId>
-	<artifactId>calculadora_parcelas</artifactId>
+	<artifactId>parcelamento</artifactId>
 	<version>1.0.0</version>
-	<name>calculadora_parcelas</name>
-	<description>Demo project for Spring Boot</description>
+	<name>parcelamento</name>
 
 	<properties>
 		<java.version>8</java.version>
