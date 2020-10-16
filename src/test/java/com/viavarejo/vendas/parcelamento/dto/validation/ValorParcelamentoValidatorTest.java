@@ -8,9 +8,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.validation.ConstraintValidatorContext;
-import java.math.BigDecimal;
 
+import static java.math.BigDecimal.ONE;
+import static java.math.BigDecimal.ZERO;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -24,17 +26,24 @@ class ValorParcelamentoValidatorTest {
     @Mock
     private ConstraintValidatorContext constraintValidatorContext;
 
-    @Test // Valor da entrada maior que valor do produto
-    public void deveRetornarFalseQuandoOValorParceladoForNegativo() {
-        when(dadosEntradaParcelamento.getValorASerParcelado()).thenReturn(BigDecimal.ONE.negate());
+    @Test
+    public void deveRetornarFalseQuandoOValorASerParceladoForNegativo() {
+        when(dadosEntradaParcelamento.getValorASerParcelado()).thenReturn(ONE.negate());
 
         assertFalse(valorParcelamentoValidator.isValid(dadosEntradaParcelamento, constraintValidatorContext));
     }
 
-//    @Test // Valor da entrada maior que valor do produto
-//    public void deveRetornarFalseQuandoOValorParceladoForNegativo() {
-//        when(baseCalculoDeParcelas.getValorASerParcelado()).thenReturn(BigDecimal.ZERO);
-//
-//        assertFalse(valorFinanciadoValidator.isValid(baseCalculoDeParcelas, constraintValidatorContext));
-//    }
+    @Test
+    public void deveRetornarFalseQuandoOValorASerParceladoForZero() {
+        when(dadosEntradaParcelamento.getValorASerParcelado()).thenReturn(ZERO);
+
+        assertFalse(valorParcelamentoValidator.isValid(dadosEntradaParcelamento, constraintValidatorContext));
+    }
+
+    @Test
+    public void deveRetornarTrueQuandoOValorASerParceladoForPositivo() {
+        when(dadosEntradaParcelamento.getValorASerParcelado()).thenReturn(ONE);
+
+        assertTrue(valorParcelamentoValidator.isValid(dadosEntradaParcelamento, constraintValidatorContext));
+    }
 }

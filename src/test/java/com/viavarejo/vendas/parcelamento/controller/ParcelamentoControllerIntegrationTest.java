@@ -27,7 +27,7 @@ public class ParcelamentoControllerIntegrationTest {
     @Test
     public void deveCriarParcelamentoSemJurosCorretamente() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(post(ENDPOINT_PARCELAMENTO)
-                .content(getPayloadJsonParaCalculoSemJuros())
+                .content(getPayloadJsonCom(6))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
@@ -41,7 +41,7 @@ public class ParcelamentoControllerIntegrationTest {
     @Test
     public void deveCriarParcelamentoComJurosPadraoCorretamente() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(post(ENDPOINT_PARCELAMENTO)
-                .content(getPayloadJsonParaCalculoComJuros())
+                .content(getPayloadJsonCom(10))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
@@ -52,11 +52,7 @@ public class ParcelamentoControllerIntegrationTest {
         }
     }
 
-    private String getPayloadJsonParaCalculoSemJuros() {
-        return "{\"produto\":{\"codigo\":1,\"nome\":\"TV de 50 polegadas\",\"valor\":15000},\"condicaoPagamento\":{\"valorEntrada\":5000,\"qtdeParcelas\":6}}";
-    }
-
-    private String getPayloadJsonParaCalculoComJuros() {
-        return "{\"produto\":{\"codigo\":1,\"nome\":\"TV de 50 polegadas\",\"valor\":15000},\"condicaoPagamento\":{\"valorEntrada\":5000,\"qtdeParcelas\":10}}";
+    private String getPayloadJsonCom(int quantidadeParcelas) {
+        return String.format("{\"produto\":{\"codigo\":1,\"nome\":\"TV de 50 polegadas\",\"valor\":15000},\"condicaoPagamento\":{\"valorEntrada\":5000,\"qtdeParcelas\":%d}}", quantidadeParcelas);
     }
 }
