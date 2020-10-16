@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("vendas")
+@RequestMapping("api/v1/vendas")
 class ParcelamentoController {
     private final SelecionadorServicoParcelamento selecionadorServicoDeParcelamento;
 
@@ -27,7 +27,7 @@ class ParcelamentoController {
     @PostMapping(value = "/parcelamento", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
     @Operation(summary = "Criação de parcelamento", description = "Cria o parcelamento de acordo com os valores fornecidos")
-    List<Parcela> calcularParcelasPor(@Valid @RequestBody DadosEntradaParcelamento dadosEntradaParcelamento) {
+    List<Parcela> criarParcelamento(@Valid @RequestBody DadosEntradaParcelamento dadosEntradaParcelamento) {
 
         ServicoParcelamento servicoParcelamento = selecionadorServicoDeParcelamento.selecionarServicoBaseadoEm(dadosEntradaParcelamento);
 

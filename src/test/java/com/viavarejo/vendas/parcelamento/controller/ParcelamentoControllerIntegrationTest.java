@@ -19,13 +19,13 @@ public class ParcelamentoControllerIntegrationTest {
     private static final String JSON_PATH_PARCELA = "$.[%d].numeroParcela";
     private static final String JSON_PATH_VALOR = "$.[%d].valor";
     private static final String JSON_PATH_TAXA_JUROS_MES = "$.[%d].taxaJurosAoMes";
-    private static final String ENDPOINT_PARCELAMENTO = "/vendas/parcelamento";
+    private static final String ENDPOINT_PARCELAMENTO = "/api/v1/vendas/parcelamento";
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void deveCalcularCorretamenteParcelasSemJuros() throws Exception {
+    public void deveCriarParcelamentoSemJurosCorretamente() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(post(ENDPOINT_PARCELAMENTO)
                 .content(getPayloadJsonParaCalculoSemJuros())
                 .contentType(MediaType.APPLICATION_JSON))
@@ -39,7 +39,7 @@ public class ParcelamentoControllerIntegrationTest {
     }
 
     @Test
-    public void deveCalcularCorretamenteParcelasComJurosPadrao() throws Exception {
+    public void deveCriarParcelamentoComJurosPadraoCorretamente() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(post(ENDPOINT_PARCELAMENTO)
                 .content(getPayloadJsonParaCalculoComJuros())
                 .contentType(MediaType.APPLICATION_JSON))
