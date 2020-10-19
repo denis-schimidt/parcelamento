@@ -3,6 +3,7 @@ package com.viavarejo.vendas.parcelamento.model;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 import static java.math.RoundingMode.HALF_EVEN;
 import static org.apache.commons.lang3.builder.ToStringStyle.JSON_STYLE;
@@ -28,6 +29,23 @@ public class Parcela {
 
     public BigDecimal getTaxaJurosAoMes() {
         return taxaJurosAoMes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Parcela parcela = (Parcela) o;
+
+        return numeroParcela == parcela.numeroParcela &&
+                Objects.equals(valor, parcela.valor) &&
+                Objects.equals(taxaJurosAoMes, parcela.taxaJurosAoMes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numeroParcela, valor, taxaJurosAoMes);
     }
 
     @Override
